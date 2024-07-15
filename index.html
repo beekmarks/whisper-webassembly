@@ -53,7 +53,6 @@
             <div id="model-whisper">
                 Whisper model: <span id="model-whisper-status"></span>
                 <button id="fetch-whisper-tiny-en" onclick="loadWhisper('tiny.en')">tiny.en (75 MB)</button>
-                <button id="fetch-whisper-base-en" onclick="loadWhisper('base.en')">base.en (142 MB)</button>
                 <br><br>
                 Quantized models:<br><br>
                 <button id="fetch-whisper-tiny-en-q5_1"   onclick="loadWhisper('tiny-en-q5_1')">tiny.en (Q5_1, 31 MB)</button>
@@ -174,15 +173,12 @@
             function loadWhisper(model) {
                 let urls = {
                     'tiny.en': './ggml-model-whisper-tiny.en.bin',
-                    'base.en': './ggml-model-whisper-base.en.bin',
-
                     'tiny-en-q5_1':  './ggml-model-whisper-tiny.en-q5_1.bin',
                     'base-en-q5_1':  './ggml-model-whisper-base.en-q5_1.bin',
                 };
 
                 let sizes = {
                     'tiny.en': 75,
-                    'base.en': 142,
 
                     'tiny-en-q5_1':   31,
                     'base-en-q5_1':   57,
@@ -195,8 +191,7 @@
                 model_whisper = model;
 
                 document.getElementById('fetch-whisper-tiny-en').style.display = 'none';
-                document.getElementById('fetch-whisper-base-en').style.display = 'none';
-
+                
                 document.getElementById('fetch-whisper-tiny-en-q5_1').style.display = 'none';
                 document.getElementById('fetch-whisper-base-en-q5_1').style.display = 'none';
 
@@ -210,8 +205,7 @@
                 cbCancel = function() {
                     var el;
                     el = document.getElementById('fetch-whisper-tiny-en'); if (el) el.style.display = 'inline-block';
-                    el = document.getElementById('fetch-whisper-base-en'); if (el) el.style.display = 'inline-block';
-
+                    
                     el = document.getElementById('fetch-whisper-tiny-en-q5_1'); if (el) el.style.display = 'inline-block';
                     el = document.getElementById('fetch-whisper-base-en-q5_1'); if (el) el.style.display = 'inline-block';
 
