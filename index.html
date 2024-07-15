@@ -1,9 +1,17 @@
 <!doctype html>
 <html lang="en-us">
     <head>
-        <title>stream : Real-time Whisper transcription in WebAssembly</title>
+        <title>Real-time Whisper transcription in WebAssembly</title>
 
         <style>
+            body {
+                font-family: Arial, sans-serif;
+                font-size: 14px;
+                margin: 2em;
+                padding: 0;
+                background-color: #ffffff;
+                
+            }
             #output {
                 width: 100%;
                 height: 100%;
@@ -24,31 +32,13 @@
                 overflow-x: scroll;
             }
         </style>
+
     </head>
     <body>
         <div id="main-container">
-            <b>stream : Real-time Whisper transcription in WebAssembly</b>
+            <b>Real-time Whisper transcription in WebAssembly</b>
 
-            <br><br>
-
-            You can find more about this project on <a href="https://github.com/ggerganov/whisper.cpp/tree/master/examples/stream.wasm">GitHub</a>.
-
-            <br><br>
-
-            <b>More examples:</b>
-                <a href="https://whisper.ggerganov.com/">main</a> |
-                <a href="https://whisper.ggerganov.com/bench">bench</a> |
-                <a href="https://whisper.ggerganov.com/stream">stream</a> |
-                <a href="https://whisper.ggerganov.com/command">command</a> |
-                <a href="https://whisper.ggerganov.com/talk">talk</a> |
-
-            <br><br>
-
-            <hr>
-
-            Select the model you would like to use, click the "Start" button and start speaking
-
-            <br><br>
+            <p>Select the model you would like to use, click the "Start" button and start speaking</p>
 
             <div id="model-whisper">
                 Whisper model: <span id="model-whisper-status"></span>
@@ -59,9 +49,6 @@
                 <button id="fetch-whisper-base-en-q5_1"   onclick="loadWhisper('base-en-q5_1')">base.en (Q5_1, 57 MB)</button>
                 <span id="fetch-whisper-progress"></span>
 
-                <!--
-                    <input type="file" id="file" name="file" onchange="loadFile(event, 'whisper.bin')" />
-                -->
             </div>
 
             <br>
@@ -99,15 +86,6 @@
                 <li>Your browser supports WASM <a href="https://webassembly.org/roadmap/">Fixed-width SIMD</a></li>
             </ul>
 
-            <div class="cell-version">
-                <span>
-                    |
-                    Build time: <span class="nav-link">Tue Jul 9 11:54:18 2024</span> |
-                    Commit hash: <a class="nav-link" href="https://github.com/ggerganov/whisper.cpp/commit/d207c688">d207c688</a> |
-                    Commit subject: <span class="nav-link">cmake : use WHISPER_EXTRA_FLAGS (#2294)</span> |
-                    <a class="nav-link" href="https://github.com/ggerganov/whisper.cpp/tree/master/examples/stream.wasm">Source Code</a> |
-                </span>
-            </div>
         </div>
 
         <script type="text/javascript" src="helpers.js"></script>
@@ -146,7 +124,7 @@
             //
 
             let dbVersion = 1
-            let dbName    = 'interop-local-llm';
+            let dbName    = 'whisper-voice';
             let indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB
 
             function storeFS(fname, buf) {
@@ -394,6 +372,7 @@
 
                     document.getElementById('state-status').innerHTML = Module.get_status();
                     document.getElementById('state-transcribed').innerHTML = transcribedAll;
+
                 }, 100);
             }
 
